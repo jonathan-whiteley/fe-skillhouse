@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "sa-transcript-tasks",
+  "version": "1.0.0",
+  "description": "Turn meeting transcripts into confirmed Asana tasks.",
+  "owner": {
+    "name": "Jonathan Whiteley"
+  },
+  "plugins": [
+    {
+      "name": "sa-transcript-tasks",
+      "description": "Turn meeting transcripts into a markdown summary and confirmed Asana tasks. Account-agnostic; configure your own accounts, teammates, and Asana projects.",
+      "source": "./plugins/sa-transcript-tasks",
+      "category": "productivity",
+      "version": "1.1.0"
+    }
+  ]
+}

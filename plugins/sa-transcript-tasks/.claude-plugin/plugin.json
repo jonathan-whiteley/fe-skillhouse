@@ -1,0 +1,9 @@
+{
+  "name": "sa-transcript-tasks",
+  "description": "Turn meeting transcripts into a markdown summary and confirmed Asana tasks. Account-agnostic; configure your own accounts, teammates, and Asana projects.",
+  "version": "1.1.0",
+  "author": {
+    "name": "Databricks SA"
+  },
+  "skills": "./skills/"
+}
