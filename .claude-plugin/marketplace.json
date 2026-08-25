@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "sa-transcript-tasks",
+  "name": "fe-skillhouse",
   "version": "1.0.0",
-  "description": "Turn meeting transcripts into confirmed Asana tasks.",
+  "description": "Jonathan Whiteley's collection of Claude Code plugins for Field Engineering workflows.",
   "owner": {
     "name": "Jonathan Whiteley"
   },
