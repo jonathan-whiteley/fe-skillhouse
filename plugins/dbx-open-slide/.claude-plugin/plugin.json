@@ -1,0 +1,9 @@
+{
+  "name": "dbx-open-slide",
+  "description": "On-brand Databricks slide decks as React code with open-slide: one-time project setup, authoring with the Databricks theme, render verification, and export to HTML, PDF, editable PPTX or native Google Slides.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Databricks SA"
+  },
+  "skills": "./skills/"
+}
