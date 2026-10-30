@@ -1,6 +1,6 @@
 ---
 name: open-slide
-description: Generate on-brand Databricks slide decks as React components in the local open-slide project, using the Databricks corporate design system as the theme. Use when the user says "open-slide", "open slide deck", "react slide deck", "build a slide in open-slide", or asks for a code-based (not Claude Design) branded deck. Sets up a local open-slide project on first use (theme, fonts, starter decks, internal brand pack), then authors decks with the Databricks theme, verifies the render, and exports to HTML, PDF, editable PPTX, or Google Slides.
+description: Generate on-brand Databricks slide decks as React components in the local open-slide project, using the Databricks corporate design system as the theme. Use when the user says "open-slide", "open slide deck", "react slide deck", "build a slide in open-slide", asks for a code-based (not Claude Design) branded deck, or wants an open-slide deck in Google Slides ("put this deck in Google Slides", "upload the deck to Slides", "put it in my Drive"). Sets up a local open-slide project on first use (theme, fonts, starter decks, internal brand pack), then authors decks with the Databricks theme, verifies the render, and exports to HTML, PDF, editable PPTX, or Google Slides.
 ---
 
 # open-slide
@@ -41,7 +41,7 @@ open-slide Progress:
 - [ ] Step 2: Author the deck via the project's own create-slide skill, Databricks theme
 - [ ] Step 3: Verify — npm run build (must pass)
 - [ ] Step 4: Verify — dev server + screenshot (confirm on-brand)
-- [ ] Step 5: Export (only if asked: HTML / PDF / PPTX)
+- [ ] Step 5: Export (only if asked: HTML / PDF / PPTX / Google Slides)
 - [ ] Step 6: Deliver + remind to commit
 ```
 
@@ -103,7 +103,7 @@ Exports run in the browser from the editor's **Download** menu (`/s/<slide-id>`,
 
 To drive it with Chrome DevTools MCP: `take_snapshot`, click the `Download` button, click the menu item, then wait for the newest `*.pptx` / `*.pdf` in `~/Downloads` (no `.crdownload` left). To sanity-check an editable PPTX, open it with `python-pptx` and count `TEXT_BOX` shapes per slide and the run fonts (expect `DM Sans` / `DM Mono`); `qlmanage -t -s 1600 -o /tmp/out <file>.pptx` renders slide 1 for a visual check.
 
-**Google Slides:** if the user wants the deck in Google Slides / their Drive, hand off to the **`open-slide-gslides`** subskill instead of uploading the raw export. Slides' importer ignores the PPTX's no-wrap flags and re-wraps every text box; that subskill pads the boxes, uploads to `My Drive/open-slide` (updating in place on re-runs), and validates the thumbnails.
+**Google Slides:** if the user wants the deck in Google Slides / their Drive, follow `references/google-slides.md` (its own G1-G5 checklist) instead of uploading the raw export. Slides' importer ignores the PPTX's no-wrap flags and re-wraps every text box; that workflow pads the boxes, uploads to `My Drive/open-slide` (updating in place on re-runs), and validates every slide's thumbnail.
 
 **Font caveat:** the PPTX does not embed fonts. Google Slides has DM Sans, so it renders correctly there; PowerPoint/Keynote fall back to a default font unless DM Sans / DM Mono are installed on that machine (TTFs are in the project's `assets/fonts/`). Tell the user this when handing over a PPTX.
 
@@ -124,6 +124,8 @@ Only when the user asks (it rewrites `package.json`, which decks must otherwise 
 
 - `scripts/setup_project.sh`: first-run project setup (idempotent).
 - `scripts/fetch_brand_pack.py`: download + verify the internal brand pack into `assets/brand/`.
+- `references/google-slides.md`: editable PPTX → native Google Slides (pad, upload/update in place, validate).
+- `scripts/pad_nowrap_boxes.py`, `scripts/pptx_to_gslides.py`, `scripts/validate_gslides.py`: the Google Slides steps.
 - `references/databricks-theme.md`: what the Databricks theme is, its palette/type at a glance, brand asset locations, and light-vs-dark logo choices — so you don't re-read the whole theme file to make routine choices.
 
 ## Examples
@@ -139,3 +141,7 @@ Result: Points at (or regenerates) `slides/hello-world-dark/`, builds, screensho
 ### Example: Editable PowerPoint
 User says: "export the quarterly review deck to PowerPoint so my AE can edit it"
 Result: Opens `/s/quarterly-review`, picks **Export as PPTX** (editable, not image), confirms the file landed in `~/Downloads` with real DM Sans text boxes, and notes that DM Sans must be installed for PowerPoint to render it on-brand (Google Slides is fine as-is).
+
+### Example: Google Slides
+User says: "put the lakebase overview deck in Google Slides"
+Result: Follows `references/google-slides.md`: exports `/s/lakebase-overview` as editable PPTX, pads its text boxes, uploads to `My Drive/open-slide/Lakebase Overview` (created first time, updated after), validates every slide's text, fonts and thumbnail, and returns the Slides link.

@@ -6,10 +6,12 @@ Databricks-branded slide decks written as React components with [open-slide](htt
 /plugin install dbx-open-slide --marketplace jonathan-whiteley/fe-skillhouse
 ```
 
-| Skill | Say | Does |
-|---|---|---|
-| `open-slide` | "make an open-slide deck on …" | First run: sets up your project (asks where). Then drafts the deck with the Databricks theme, builds it, screenshots every slide to check it renders on-brand, and exports HTML / PDF / editable PPTX on request. |
-| `open-slide-gslides` | "put this deck in Google Slides" | Exports editable PPTX, fixes Google Slides' text re-wrapping, uploads to `My Drive/open-slide` (updates in place on re-runs) and checks every slide's thumbnail. |
+One skill, `open-slide`:
+
+| Say | Does |
+|---|---|
+| "make an open-slide deck on …" | First run: sets up your project (asks where). Then drafts the deck with the Databricks theme, builds it, screenshots every slide to check it renders on-brand, and exports HTML / PDF / editable PPTX on request. |
+| "put this deck in Google Slides" | Exports editable PPTX, fixes Google Slides' text re-wrapping, uploads to `My Drive/open-slide` (updates in place on re-runs) and checks every slide's thumbnail. |
 
 ## Requirements
 
