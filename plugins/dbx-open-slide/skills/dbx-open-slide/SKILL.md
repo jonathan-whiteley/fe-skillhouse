@@ -1,9 +1,9 @@
 ---
-name: open-slide
-description: Generate on-brand Databricks slide decks as React components in the local open-slide project, using the Databricks corporate design system as the theme. Use when the user says "open-slide", "open slide deck", "react slide deck", "build a slide in open-slide", asks for a code-based (not Claude Design) branded deck, or wants an open-slide deck in Google Slides ("put this deck in Google Slides", "upload the deck to Slides", "put it in my Drive"). Sets up a local open-slide project on first use (theme, fonts, starter decks, internal brand pack), then authors decks with the Databricks theme, verifies the render, and exports to HTML, PDF, editable PPTX, or Google Slides.
+name: dbx-open-slide
+description: Generate on-brand Databricks slide decks as React components in the local open-slide project, using the Databricks corporate design system as the theme. Use when the user says "dbx-open-slide", "open-slide", "open slide deck", "react slide deck", "build a slide in open-slide", asks for a code-based (not Claude Design) branded deck, or wants an open-slide deck in Google Slides ("put this deck in Google Slides", "upload the deck to Slides", "put it in my Drive"). Sets up a local open-slide project on first use (theme, fonts, starter decks, internal brand pack), then authors decks with the Databricks theme, verifies the render, and exports to HTML, PDF, editable PPTX, or Google Slides.
 ---
 
-# open-slide
+# dbx-open-slide
 
 Generate a polished, on-brand Databricks slide deck as React components in the user's **local open-slide project** (`<project>` below; Step 1 finds or creates it). Each deck is a `slides/<id>/index.tsx` file rendered on a fixed 1920×1080 canvas; the `@open-slide/core` runtime handles scaling, navigation, thumbnails, and play mode.
 
@@ -35,7 +35,7 @@ This skill's job is only to: get into the right project, make sure the **Databri
 Copy this checklist and track progress:
 
 ```
-open-slide Progress:
+dbx-open-slide Progress:
 - [ ] Step 0: Gather brief (topic, audience, slide count, light/dark)
 - [ ] Step 1: Find or set up the project
 - [ ] Step 2: Author the deck via the project's own create-slide skill, Databricks theme

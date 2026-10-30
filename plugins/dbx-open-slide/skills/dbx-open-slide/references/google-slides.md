@@ -3,7 +3,7 @@
 Turn a deck in `<project>/slides/<id>/` into an **editable, native Google Slides deck** in My Drive under
 `open-slide/`. Re-running for the same deck **updates the same file in place**, so the Slides URL stays stable
 across iterations. Assumes the deck already builds and renders (SKILL.md Steps 3-4). `<skill-dir>` is the
-open-slide skill's base directory.
+dbx-open-slide skill's base directory.
 
 ## Why the pad step exists (do not skip it)
 

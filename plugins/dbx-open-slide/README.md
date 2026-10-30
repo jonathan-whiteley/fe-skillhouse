@@ -6,7 +6,7 @@ Databricks-branded slide decks written as React components with [open-slide](htt
 /plugin install dbx-open-slide --marketplace jonathan-whiteley/fe-skillhouse
 ```
 
-One skill, `open-slide`:
+One skill, `dbx-open-slide`:
 
 | Say | Does |
 |---|---|
