@@ -41,6 +41,21 @@ Usage: run `/transcript-to-tasks`, or paste meeting notes and say "make Asana
 tasks from this." The skill produces a summary, shows a numbered confirmation
 table, and only creates tasks after you approve.
 
+### dbx-open-slide
+
+On-brand Databricks slide decks written as React code with open-slide. First use sets up a local project
+(theme, fonts, starter decks; logos and product icons are downloaded from an internal Drive file); then Claude
+authors decks, screenshots them to check the render, and exports to HTML, PDF, editable PPTX or native Google
+Slides.
+
+```
+/plugin install dbx-open-slide
+```
+
+Needs Node 20+, Python 3, and the vibe `fe-google-tools` plugin signed in with your databricks.com account.
+Usage: "make an open-slide deck on our Lakebase launch, dark mode", then "put it in Google Slides".
+Details: [`plugins/dbx-open-slide/README.md`](plugins/dbx-open-slide/README.md).
+
 _More plugins will be added here over time._
 
 ## Prerequisites

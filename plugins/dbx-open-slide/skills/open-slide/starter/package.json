@@ -1,0 +1,25 @@
+{
+  "name": "dbx-open-slide",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "open-slide dev",
+    "build": "open-slide build",
+    "preview": "open-slide preview",
+    "sync:skills": "open-slide sync:skills"
+  },
+  "dependencies": {
+    "@open-slide/core": "^2.1.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "vite": "^8.3.0"
+  },
+  "overrides": {
+    "zod": "^4.5.0"
+  }
+}

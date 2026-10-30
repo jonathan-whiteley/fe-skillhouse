@@ -13,6 +13,13 @@
       "source": "./plugins/sa-transcript-tasks",
       "category": "productivity",
       "version": "1.1.0"
+    },
+    {
+      "name": "dbx-open-slide",
+      "description": "On-brand Databricks slide decks as React code (open-slide): setup, authoring with the Databricks theme, render checks, and export to PPTX, PDF, HTML or Google Slides.",
+      "source": "./plugins/dbx-open-slide",
+      "category": "productivity",
+      "version": "1.0.0"
     }
   ]
 }
