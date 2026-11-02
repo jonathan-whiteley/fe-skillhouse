@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
-"""Resolve fuzzy due-date strings to YYYY-MM-DD."""
+"""Resolve fuzzy due-date strings to YYYY-MM-DD.
 
+CLI:  python3 due_date.py [--from YYYY-MM-DD] "<when>"
+  --from is the reference day, normally the MEETING date: "Friday" said on Wed Oct 28 means Oct 30, even if the
+  transcript is processed the next week. Default: today. Unrecognized text exits 1 (never a silent guess); a date
+  that is already past prints a warning on stderr.
+"""
+
+import argparse
 import re
 import sys
 from datetime import datetime, timedelta
@@ -18,8 +25,8 @@ DAY_MAP = {
 DEFAULT_DAYS = 7
 
 
-def resolve(text: str, reference: datetime | None = None) -> str:
-    """Return YYYY-MM-DD from a fuzzy date string."""
+def resolve(text: str, reference: datetime | None = None, strict: bool = False) -> str:
+    """Return YYYY-MM-DD from a fuzzy date string. strict=True raises ValueError instead of guessing +7 days."""
     ref = reference or datetime.now()
     t = text.strip().lower()
 
@@ -86,12 +93,32 @@ def resolve(text: str, reference: datetime | None = None) -> str:
     if m:
         return (ref + timedelta(days=int(m.group(1)))).strftime("%Y-%m-%d")
 
+    if strict:
+        raise ValueError(f"unrecognized due date: {text!r}")
     # Fallback: +7 days
     return (ref + timedelta(days=DEFAULT_DAYS)).strftime("%Y-%m-%d")
 
 
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Resolve a stated deadline to YYYY-MM-DD.")
+    ap.add_argument("--from", dest="ref", help="reference day YYYY-MM-DD (the meeting date); default today")
+    ap.add_argument("when", nargs="+", help='e.g. "Friday", "EOW", "next Monday", "Nov 19"')
+    a = ap.parse_args(argv)
+    ref = datetime.strptime(a.ref, "%Y-%m-%d") if a.ref else datetime.now()
+    text = " ".join(a.when).strip()
+    if not text:
+        ap.error("no date given (tasks have no due date unless one was stated)")
+    try:
+        out = resolve(text, ref, strict=True)
+    except ValueError as e:
+        print(f"due_date: {e}; give a weekday, 'EOW', 'next week', '+N days', a month and day, or YYYY-MM-DD",
+              file=sys.stderr)
+        return 1
+    if out < datetime.now().strftime("%Y-%m-%d"):
+        print(f"warning: {out} is already past; confirm the date with the user", file=sys.stderr)
+    print(out)
+    return 0
+
+
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        print(resolve(" ".join(sys.argv[1:])))
-    else:
-        print(resolve(""))
+    sys.exit(main())

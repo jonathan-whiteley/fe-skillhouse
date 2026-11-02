@@ -228,7 +228,7 @@ const Lakebase: Page = () => (
 );
 
 export const meta: SlideMeta = {
-  title: 'Hello world — Genie and Lakebase',
+  title: 'Hello world: Genie and Lakebase',
   createdAt: '2026-08-19T15:54:20.938Z',
   theme: 'databricks',
 };

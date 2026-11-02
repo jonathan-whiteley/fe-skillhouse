@@ -12,12 +12,19 @@
       "description": "Turn meeting transcripts into a markdown summary and confirmed Asana tasks. Account-agnostic; configure your own accounts, teammates, and Asana projects.",
       "source": "./plugins/sa-transcript-tasks",
       "category": "productivity",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "dbx-open-slide",
       "description": "On-brand Databricks slide decks as React code (open-slide): setup, authoring with the Databricks theme, render checks, and export to PPTX, PDF, HTML or Google Slides.",
       "source": "./plugins/dbx-open-slide",
+      "category": "productivity",
+      "version": "1.1.0"
+    },
+    {
+      "name": "new-this-week",
+      "description": "Customer-facing \"New This Week\" slide of the most meaningful recent Databricks releases, curated for one customer and built with dbx-open-slide; exports PDF or Google Slides.",
+      "source": "./plugins/new-this-week",
       "category": "productivity",
       "version": "1.0.0"
     }

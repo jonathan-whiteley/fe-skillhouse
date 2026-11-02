@@ -15,7 +15,7 @@ One skill, `dbx-open-slide`:
 
 ## Requirements
 
-- Node.js 20+ and npm (the Databricks npm proxy works; the project pins versions it serves)
+- Node.js 22+ and npm (22+ for the headless PDF export; the Databricks npm proxy works, the project pins versions it serves)
 - Python 3
 - The **fe-google-tools** plugin from vibe, signed in with your databricks.com account (`/google-auth`). It's used to
   download the brand pack and for the Google Slides upload.

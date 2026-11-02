@@ -27,7 +27,7 @@ export const design: DesignSystem = {
 };
 
 export const meta: SlideMeta = {
-  title: 'Databricks — architecture layouts',
+  title: 'Databricks: architecture layouts',
   createdAt: '2026-08-18T21:53:03.050Z',
   theme: 'databricks',
 };

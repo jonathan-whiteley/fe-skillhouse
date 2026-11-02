@@ -39,7 +39,7 @@ dbx-open-slide Progress:
 - [ ] Step 0: Gather brief (topic, audience, slide count, light/dark)
 - [ ] Step 1: Find or set up the project
 - [ ] Step 2: Author the deck via the project's own create-slide skill, Databricks theme
-- [ ] Step 3: Verify — npm run build (must pass)
+- [ ] Step 3: Verify — npm run build + copy lint (must pass)
 - [ ] Step 4: Verify — dev server + screenshot (confirm on-brand)
 - [ ] Step 5: Export (only if asked: HTML / PDF / PPTX / Google Slides)
 - [ ] Step 6: Deliver + remind to commit
@@ -76,6 +76,12 @@ cd <project> && npm run build 2>&1 | tail -20
 ```
 Gate: the build MUST complete ("✓ built in ...") with no transform/type errors on your slide. Fix and rebuild before continuing. (The "chunks larger than 500 kB" notice is a benign warning, not a failure.)
 
+Then lint the deck's visible copy:
+```bash
+python3 <skill-dir>/scripts/deslop_lint.py <project>/slides/<slide-id>
+```
+**HARD** findings (em/en dashes, emoji, leftover placeholders) must be zero: fix and re-run. Review every **SOFT** finding (hype words, "X, not Y" titles, "not just X, but Y", "One X. One Y." motifs, exclamation marks, periods on short titles) and rewrite the ones that read as filler; state titles as plain claims. Lint only the deck you wrote; open-slide's own `getting-started` sample isn't yours to fix.
+
 ### Step 4: Verify — screenshot (default: always)
 Confirm the deck actually renders on-brand, not just that it compiles:
 1. Start the dev server in the background: `cd <project> && npm run dev`. Read the port from `node_modules/.open-slide/server.json` (`{ "url", "port", ... }`, written on startup, removed on shutdown) instead of assuming 5173. Its `url` is IPv6 (`http://[::1]:5173/`); `http://localhost:<port>/` works the same.
@@ -97,11 +103,17 @@ Exports run in the browser from the editor's **Download** menu (`/s/<slide-id>`,
 | Menu item | Output | Use when |
 |---|---|---|
 | Export as HTML | Self-contained static deck | Sharing without a server |
-| Export as PDF | One page per slide (not supported in Safari) | Read-only handout |
+| Export as PDF | One page per slide, live links (use the script below, not the menu) | Read-only handout |
 | **Export as PPTX** | **Editable**: real text boxes, shapes, logos as pictures | Someone will edit in PowerPoint / Google Slides / Keynote |
 | Export as image PPTX | Each slide is a flat picture | Pixel-perfect fidelity matters more than editing |
 
-To drive it with Chrome DevTools MCP: `take_snapshot`, click the `Download` button, click the menu item, then wait for the newest `*.pptx` / `*.pdf` in `~/Downloads` (no `.crdownload` left). To sanity-check an editable PPTX, open it with `python-pptx` and count `TEXT_BOX` shapes per slide and the run fonts (expect `DM Sans` / `DM Mono`); `qlmanage -t -s 1600 -o /tmp/out <file>.pptx` renders slide 1 for a visual check.
+**PDF:** the menu item opens the browser's print dialog, which you can't complete. Run open-slide's same export headlessly instead (dev server running; Node 22+; Google Chrome):
+```bash
+node <skill-dir>/scripts/export_pdf.mjs http://localhost:<port>/ <slide-id> ~/Downloads/<slide-id>.pdf
+```
+It prints `{"pages": N, "page_size_pt": "1440x810", "distinct_links": K}`: `pages` must equal the deck's page count and the size must be `1440x810` (1920×1080 px). Render page 1 with `qlmanage -t -s 1600 -o /tmp/out <file>.pdf` and look at it.
+
+**HTML / PPTX:** drive the menu with Chrome DevTools MCP: `take_snapshot`, click the `Download` button, click the menu item, then wait for the newest `*.pptx` / `*.pdf` in `~/Downloads` (no `.crdownload` left). To sanity-check an editable PPTX, open it with `python-pptx` and count `TEXT_BOX` shapes per slide and the run fonts (expect `DM Sans` / `DM Mono`); `qlmanage -t -s 1600 -o /tmp/out <file>.pptx` renders slide 1 for a visual check.
 
 **Google Slides:** if the user wants the deck in Google Slides / their Drive, follow `references/google-slides.md` (its own G1-G5 checklist) instead of uploading the raw export. Slides' importer ignores the PPTX's no-wrap flags and re-wraps every text box; that workflow pads the boxes, uploads to `My Drive/open-slide` (updating in place on re-runs), and validates every slide's thumbnail.
 
@@ -125,6 +137,8 @@ Only when the user asks (it rewrites `package.json`, which decks must otherwise 
 - `scripts/setup_project.sh`: first-run project setup (idempotent).
 - `scripts/fetch_brand_pack.py`: download + verify the internal brand pack into `assets/brand/`.
 - `references/google-slides.md`: editable PPTX → native Google Slides (pad, upload/update in place, validate).
+- `scripts/deslop_lint.py`: copy lint for a deck's visible text (Step 3).
+- `scripts/export_pdf.mjs`: headless multi-page PDF export with live links (Step 5).
 - `scripts/pad_nowrap_boxes.py`, `scripts/pptx_to_gslides.py`, `scripts/validate_gslides.py`: the Google Slides steps.
 - `references/databricks-theme.md`: what the Databricks theme is, its palette/type at a glance, brand asset locations, and light-vs-dark logo choices — so you don't re-read the whole theme file to make routine choices.
 

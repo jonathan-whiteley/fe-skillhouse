@@ -35,7 +35,7 @@ export const design: DesignSystem = {
 };
 
 export const meta: SlideMeta = {
-  title: 'Databricks — narrative layouts',
+  title: 'Databricks: narrative layouts',
   createdAt: '2026-08-18T21:53:03.050Z',
   theme: 'databricks',
 };

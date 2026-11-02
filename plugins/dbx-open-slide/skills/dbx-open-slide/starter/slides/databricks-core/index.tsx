@@ -601,7 +601,7 @@ const Closing = () => (
 
 // ─── Metadata and Exports ───────────────────────────────────────────────────
 export const meta: SlideMeta = {
-  title: 'Databricks — core layouts',
+  title: 'Databricks: core layouts',
   createdAt: '2026-08-18T21:53:03.050Z',
   theme: 'databricks',
 };

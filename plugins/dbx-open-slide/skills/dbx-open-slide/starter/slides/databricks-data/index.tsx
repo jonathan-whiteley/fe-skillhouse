@@ -344,7 +344,7 @@ const PageFooter = () => {
 
 // ─── Metadata & Export ──────────────────────────────────────────────────────
 export const meta: SlideMeta = {
-  title: 'Databricks — data layouts',
+  title: 'Databricks: data layouts',
   createdAt: '2026-08-18T21:53:03.050Z',
   theme: 'databricks',
 };

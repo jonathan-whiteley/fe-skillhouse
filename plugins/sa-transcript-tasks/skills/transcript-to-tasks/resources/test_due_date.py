@@ -38,3 +38,21 @@ def test_next_wednesday_on_a_wednesday_is_plus_7():
 
 def test_empty_defaults_to_plus_7():
     assert due_date.resolve("", MON) == "2026-08-31"
+
+
+def test_reference_is_the_meeting_date():
+    # "Friday" said in a Wednesday Oct 28 meeting means Oct 30, not the Friday after processing.
+    assert due_date.resolve("Friday", datetime(2026, 10, 28)) == "2026-10-30"
+
+
+def test_strict_rejects_unrecognized_text():
+    import pytest
+    with pytest.raises(ValueError):
+        due_date.resolve("whenever works", datetime(2026, 10, 28), strict=True)
+
+
+def test_cli_from_flag_and_errors(capsys):
+    main = due_date.main
+    assert main(["--from", "2026-10-28", "Friday"]) == 0
+    assert capsys.readouterr().out.strip() == "2026-10-30"
+    assert main(["gibberish"]) == 1
