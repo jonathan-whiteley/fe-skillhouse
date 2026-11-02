@@ -85,11 +85,14 @@ Or describe what you want in plain language:
 
 The skill will:
 
-1. Produce a plain-markdown summary of the meeting.
-2. Extract team-owned action items (yours and any teammates in `assignee_map`).
-3. Show a numbered confirmation table with account, tag, assignee, task text, and due date.
-4. Wait for your approval: type `y` to create all, `edit 2,3` to drop specific rows and
-   create the rest, or `skip` to create nothing.
+1. Produce a plain-markdown summary: TL;DR, topics named for what was discussed (with the names, numbers and
+   dates kept), decisions, open questions, milestones, and action items. Unknowns are marked `[UNKNOWN]`.
+2. Turn action items into tasks only when they have a clear owner (you or a teammate in `assignee_map`), a concrete
+   action, and a real consequence; the rest stay in the summary. Task text is worded to stand alone.
+3. Show a numbered confirmation table with account, tag, assignee, task text, and any deadline the meeting
+   stated. Tasks have no due date unless the meeting gave one or you add one at this step.
+4. Wait for your approval: type `y` to create all, `drop 2,3` to create all but those rows,
+   or `skip` to create nothing. Any other reply edits the table and shows it again.
 5. Create the approved tasks in Asana and report back URLs.
 
 The confirmation step is mandatory. The skill will never create tasks in the same turn it

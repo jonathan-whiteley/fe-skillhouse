@@ -56,6 +56,20 @@ Needs Node 20+, Python 3, and the vibe `fe-google-tools` plugin signed in with y
 Usage: "make an open-slide deck on our Lakebase launch, dark mode", then "put it in Google Slides".
 Details: [`plugins/dbx-open-slide/README.md`](plugins/dbx-open-slide/README.md).
 
+### new-this-week
+
+A customer-facing one-slider of the most meaningful recent Databricks releases for one customer: three pillars,
+7-11 items, each tied to what that customer is working on. It reads the public release notes and blog, shows you
+the shortlist to approve, then builds the slide with `dbx-open-slide` and exports a PDF with live links (or Google
+Slides).
+
+```
+/plugin install new-this-week
+```
+
+Needs the `dbx-open-slide` plugin and Google Chrome. Usage: "new this week for Northwind Retail, last 14 days".
+Details: [`plugins/new-this-week/README.md`](plugins/new-this-week/README.md).
+
 _More plugins will be added here over time._
 
 ## Prerequisites

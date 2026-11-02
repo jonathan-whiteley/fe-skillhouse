@@ -1,0 +1,92 @@
+{
+  "customer": "Northwind Retail",
+  "as_of": "2026-10-13",
+  "window_label": "Sep 13 - Oct 13, 2026",
+  "kicker": "New This Month",
+  "subtitle": "Updates mapped to your Power BI to Genie migration, the store-ops apps on Lakebase, and your AI governance program",
+  "pillars": [
+    {
+      "name": "Genie & BI",
+      "tagline": "Conversational analytics and dashboards",
+      "items": [
+        {
+          "title": "Genie One MCP server",
+          "status": "GA",
+          "date": "Sep 25",
+          "url": "https://docs.databricks.com/aws/en/genie/",
+          "what": "Genie is exposed as a governed conversational tool over Model Context Protocol for any MCP-capable agent.",
+          "why": "Store-ops assistants can answer from curated sales tables instead of generic scans."
+        },
+        {
+          "title": "Metric view window measures",
+          "status": "GA",
+          "date": "Oct 6",
+          "url": "https://docs.databricks.com/aws/en/metric-views/",
+          "what": "Rolling, cumulative, and semiadditive aggregations defined once in Unity Catalog metric views.",
+          "why": "Recreates the Power BI time-intelligence measures (rolling, YTD) for the Genie migration."
+        },
+        {
+          "title": "Dataset materialization for dashboards",
+          "status": "Beta",
+          "date": "Oct 7",
+          "url": "https://docs.databricks.com/aws/en/dashboards/",
+          "what": "Pre-compute and store dashboard dataset results on a schedule for instant interactivity.",
+          "why": "Import-mode speed for the regional sales reports moving off Power BI."
+        }
+      ]
+    },
+    {
+      "name": "Data Eng & Platform/Governance",
+      "tagline": "Govern, secure, and serve",
+      "items": [
+        {
+          "title": "Governed tag propagation via lineage",
+          "status": "Beta",
+          "date": "Oct 12",
+          "url": "https://docs.databricks.com/aws/en/data-governance/unity-catalog/",
+          "what": "Unity Catalog uses lineage to apply governed tags to derived tables automatically.",
+          "why": "PII classification follows loyalty data downstream without manual tagging."
+        },
+        {
+          "title": "Metastore-level ABAC policies",
+          "status": "Beta",
+          "date": "Sep 17",
+          "url": "https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/",
+          "what": "A single attribute-based policy applies across every catalog in the metastore.",
+          "why": "One company-wide masking rule instead of per-catalog policies for each banner."
+        },
+        {
+          "title": "Lakebase autoscaling",
+          "status": "GA",
+          "date": "Oct 2",
+          "url": "https://docs.databricks.com/aws/en/oltp/",
+          "what": "Lakebase Postgres scales compute up and down with load, including scale to zero.",
+          "why": "Store-ops apps absorb weekend peaks without paying for idle capacity midweek."
+        }
+      ]
+    },
+    {
+      "name": "Data Science & AI",
+      "tagline": "Agents, models, and guardrails",
+      "items": [
+        {
+          "title": "Agent Bricks Supervisor Agent",
+          "status": "GA",
+          "date": "Oct 9",
+          "url": "https://docs.databricks.com/aws/en/generative-ai/agent-bricks/",
+          "what": "Coordinate Genie spaces, knowledge assistants, and tools behind one governed agent.",
+          "why": "One store-manager assistant that routes between sales, labor, and policy questions.",
+          "headline": true
+        },
+        {
+          "title": "Partner guardrails via service policies",
+          "status": "Beta",
+          "date": "Oct 7",
+          "url": "https://docs.databricks.com/aws/en/ai-gateway/",
+          "what": "External service policies send requests and responses to your guardrail vendor and block denied calls.",
+          "why": "Central PII and prompt-injection enforcement for every agent and app."
+        }
+      ]
+    }
+  ]
+}

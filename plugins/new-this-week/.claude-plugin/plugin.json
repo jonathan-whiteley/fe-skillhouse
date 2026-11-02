@@ -1,0 +1,9 @@
+{
+  "name": "new-this-week",
+  "description": "Customer-facing \"New This Week\" slide: the most meaningful recent Databricks releases for one customer, curated into three pillars and tied to their initiatives, built as an on-brand open-slide deck (via dbx-open-slide) and exported to PDF with live links or Google Slides.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Databricks SA"
+  },
+  "skills": "./skills/"
+}
