@@ -2,9 +2,37 @@
 
 Databricks-branded slide decks written as React components with [open-slide](https://www.npmjs.com/package/@open-slide/core).
 
+## Install
+
+**Claude Code** (inside a session):
+
 ```
 /plugin install dbx-open-slide --marketplace jonathan-whiteley/fe-skillhouse
 ```
+
+On Claude Code older than 2.1.275, add the marketplace first:
+`/plugin marketplace add https://github.com/jonathan-whiteley/fe-skillhouse`, then
+`/plugin install dbx-open-slide@fe-skillhouse`.
+
+**Isaac (local CLI):** `isaac plugin add` only covers the internal marketplace, so use the `claude` CLI and then
+restart Isaac:
+
+```bash
+claude plugin marketplace add jonathan-whiteley/fe-skillhouse
+claude plugin install dbx-open-slide@fe-skillhouse
+```
+
+Isaac Web (cloud) sessions can't load it: they only take internal-marketplace plugins, and the skill needs a local
+Node, Chrome and dev server.
+
+## Use it
+
+1. Run `/dbx-open-slide:dbx-open-slide` (or just ask for "an open-slide deck") and describe it, for example:
+   "3-slide Genie One deck for a retail exec, light mode, with an architecture slide and a rollout plan."
+2. The first run asks where to put your project, sets it up, and downloads the brand pack.
+3. View or present: Claude starts the dev server and gives you `http://localhost:5173/s/<deck-id>`. Present mode
+   shows the speaker notes.
+4. Export: ask for "PDF", "editable PPTX", or "put it in Google Slides".
 
 One skill, `dbx-open-slide`:
 

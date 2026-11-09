@@ -4,15 +4,51 @@ A Claude Code plugin marketplace: Jonathan Whiteley's collection of plugins for
 Field Engineering workflows. Add the marketplace once, then install whichever
 plugins you want from it.
 
-## Add the marketplace
+## Install
 
-In Claude Code (works anonymously over HTTPS, no GitHub account needed):
+The repo is public, so this works over HTTPS with no GitHub account or invite.
+
+### Claude Code
+
+Inside Claude Code, add the marketplace once, then install the plugins you want:
 
 ```
 /plugin marketplace add https://github.com/jonathan-whiteley/fe-skillhouse
+/plugin install dbx-open-slide@fe-skillhouse
 ```
 
-Then install any plugin listed below.
+Or from a terminal:
+
+```bash
+claude plugin marketplace add jonathan-whiteley/fe-skillhouse
+claude plugin install dbx-open-slide@fe-skillhouse
+```
+
+Restart Claude Code after installing. Skills show up as `<plugin>:<skill>`, for example
+`/dbx-open-slide:dbx-open-slide`.
+
+### Isaac (local CLI)
+
+`isaac plugin add` only knows the internal `@experimental` and `@production` tiers, so add this
+marketplace with the `claude` CLI that Isaac runs on, then restart your Isaac session:
+
+```bash
+claude plugin marketplace add jonathan-whiteley/fe-skillhouse
+claude plugin install dbx-open-slide@fe-skillhouse
+```
+
+Isaac Web (cloud) sessions only load plugins from the internal plugin marketplace, so use these
+plugins in a local Claude Code or Isaac session. `dbx-open-slide` also needs a local Node, Chrome
+and dev server.
+
+### Updating
+
+```bash
+claude plugin marketplace update fe-skillhouse
+claude plugin update dbx-open-slide@fe-skillhouse
+```
+
+Swap in `sa-transcript-tasks` or `new-this-week` for any of the plugins below.
 
 ## Plugins
 
@@ -22,7 +58,7 @@ Turn meeting transcripts into a plain-markdown summary and confirmed Asana tasks
 Account-agnostic: configure your own accounts, teammates, and Asana projects.
 
 ```
-/plugin install sa-transcript-tasks
+/plugin install sa-transcript-tasks@fe-skillhouse
 ```
 
 Then run the one-time setup wizard (it writes `~/.claude/asana-config.json`):
@@ -49,12 +85,12 @@ authors decks, screenshots them to check the render, and exports to HTML, PDF, e
 Slides.
 
 ```
-/plugin install dbx-open-slide
+/plugin install dbx-open-slide@fe-skillhouse
 ```
 
-Needs Node 20+, Python 3, and the vibe `fe-google-tools` plugin signed in with your databricks.com account.
-Usage: "make an open-slide deck on our Lakebase launch, dark mode", then "put it in Google Slides".
-Details: [`plugins/dbx-open-slide/README.md`](plugins/dbx-open-slide/README.md).
+Needs Node 22+, Python 3, Google Chrome, and the vibe `fe-google-tools` plugin signed in with your
+databricks.com account. Usage: "make an open-slide deck on our Lakebase launch, dark mode", then "put it in
+Google Slides". Details: [`plugins/dbx-open-slide/README.md`](plugins/dbx-open-slide/README.md).
 
 ### new-this-week
 
@@ -64,7 +100,7 @@ the shortlist to approve, then builds the slide with `dbx-open-slide` and export
 Slides).
 
 ```
-/plugin install new-this-week
+/plugin install new-this-week@fe-skillhouse
 ```
 
 Needs the `dbx-open-slide` plugin and Google Chrome. Usage: "new this week for Northwind Retail, last 14 days".
