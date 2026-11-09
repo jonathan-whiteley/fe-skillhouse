@@ -79,10 +79,15 @@ table, and only creates tasks after you approve.
 
 ### dbx-open-slide
 
-On-brand Databricks slide decks written as React code with open-slide. First use sets up a local project
-(theme, fonts, starter decks; logos and product icons are downloaded from an internal Drive file); then Claude
-authors decks, screenshots them to check the render, and exports to HTML, PDF, editable PPTX or native Google
-Slides.
+On-brand Databricks slide decks written as React code with open-slide, which stay editable after the AI is done.
+Most AI-generated decks are fixed HTML, so every typo fix or moved text box is another LLM call. Here you edit
+text, move and resize boxes, and change formatting yourself in the open-slide editor, with no LLM call. Export to
+editable PPTX or native Google Slides and teammates can keep editing, or you can blend the AI slides with existing
+corporate decks.
+
+First use sets up a local project (theme, fonts, starter decks; logos and product icons are downloaded from an
+internal Drive file). Then Claude authors decks, screenshots them to check the render, and exports to HTML, PDF,
+editable PPTX or native Google Slides.
 
 ```
 /plugin install dbx-open-slide@fe-skillhouse

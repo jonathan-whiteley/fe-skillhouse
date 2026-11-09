@@ -16,10 +16,10 @@
     },
     {
       "name": "dbx-open-slide",
-      "description": "On-brand Databricks slide decks as React code (open-slide): setup, authoring with the Databricks theme, render checks, and export to PPTX, PDF, HTML or Google Slides.",
+      "description": "On-brand Databricks slide decks as React code with open-slide that stay editable without an LLM: edit text and layout in the open-slide editor, then export to editable PPTX or native Google Slides to collaborate and blend with corporate decks.",
       "source": "./plugins/dbx-open-slide",
       "category": "productivity",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "new-this-week",

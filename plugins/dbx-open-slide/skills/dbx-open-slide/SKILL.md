@@ -9,6 +9,8 @@ Generate a polished, on-brand Databricks slide deck as React components in the u
 
 Use it when the user wants editable, code-based slides in a git repo they run locally, with PPTX / PDF / HTML / Google Slides export.
 
+**Why this beats a fixed-HTML deck:** the deck stays editable without the agent. In the open-slide editor the user double-clicks to edit text, drags and resizes objects, crops images, and formats in the Format panel; Save writes straight back to `slides/<id>/index.tsx`, with no LLM call. The PPTX and Google Slides exports are editable too (real text boxes and shapes), so teammates can keep working on the deck and blend it with existing corporate slides. Keep that in mind when handing off: point small tweaks at the editor, and keep the agent for real rewrites.
+
 ## This skill is a thin driver
 
 The open-slide project ships its **own** authoring skills under `.agents/skills/` — they are the source of truth for *how* to write slides, and this skill delegates to them rather than duplicating their contents (so it never drifts when the project updates):
@@ -122,7 +124,8 @@ It prints `{"pages": N, "page_size_pt": "1440x810", "distinct_links": K}`: `page
 ### Step 6: Deliver + remind to commit
 - Tell the user the **slide id** and how to view/present: `cd <project> && npm run dev`, then open the local URL.
 - The deck is a **local git file**, not a hosted link. Remind the user to commit it (offer to do so): `git add slides/<id> && git commit`.
-- Summarize the slide list briefly and how to edit (open `slides/<id>/index.tsx`, or use the project's `apply-comments` / `current-slide` skills for inspector-driven edits).
+- Summarize the slide list briefly and how to edit: small changes (text, position, size, formatting) directly in the editor at `/s/<id>` via double-click and the Format panel, with no LLM call; larger changes by asking you, or by leaving a Comment on the object and running the project's `apply-comments` skill (`current-slide` resolves "this slide").
+- **Before any later edit, re-read `slides/<id>/index.tsx`.** Format panel saves rewrite the file, so an earlier copy in your context is stale; editing from it would undo the user's manual changes.
 
 ## Upgrading open-slide
 Only when the user asks (it rewrites `package.json`, which decks must otherwise never touch). Work on a branch:

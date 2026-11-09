@@ -2,6 +2,19 @@
 
 Databricks-branded slide decks written as React components with [open-slide](https://www.npmjs.com/package/@open-slide/core).
 
+## Why open-slide
+
+Most AI-generated decks are fixed HTML that runs locally. Every change, even fixing a typo or nudging a text box, is
+another LLM call, which costs tokens and time. Decks from this plugin stay editable at every stage:
+
+- **In the open-slide editor, no LLM needed.** Double-click to edit text, drag and resize boxes, crop images, and
+  change formatting in the Format panel. Save writes the change straight back to the deck. Save the agent for real
+  rewrites, or leave it a comment on the object.
+- **After export, in PowerPoint or Google Slides.** The PPTX and Google Slides exports use real text boxes, shapes
+  and logos, not pictures of slides. Teammates can edit them like any other deck.
+- **Mixed with corporate decks.** Once it's in Google Slides, drop AI-generated slides into an existing corporate
+  deck, or add native slides to the AI one, and keep collaborating there.
+
 ## Install
 
 **Claude Code** (inside a session):
